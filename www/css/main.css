@@ -1,0 +1,86 @@
+html,
+body {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
+body {
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    min-height: 100vh;
+    font: normal 16px sans-serif;
+    padding-top: 3%;
+    /* space for the top nav bar */
+    font-size: 14px !important;
+}
+
+.category {
+    cursor: pointer;
+}
+.models_list{cursor: pointer;font-size: 20px;/* margin-left: 20%; */margin-top: 56px;}
+.modal-header,.modal-body{text-align: center;}
+.add_urn{margin-top: 20px;}
+.status_msg{color: red;}
+.loader {
+    display: none;
+    position: fixed;
+    left: 0px;
+    top: 64px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('../img/giphy.gif') 50% 40% no-repeat rgb(255, 255, 255);
+    background-size: 150px 150px;
+}
+
+
+.viewer_container {
+    display: none;
+}
+
+
+
+
+
+.gallery-container {
+    margin-top: 30px;
+}
+
+#forgeViewer {
+    height: 74% !important;
+    width: 76% !important;
+    /* display: block; */
+    position: absolute;
+    /* bottom: 0; */
+    top: 20%;
+    /* left: 9%; */
+    /* right: 0; */
+}
+
+.logo_header {
+    font-size: 36px;
+}
+
+
+.login_prompt {
+    background-image: url(/img/autodesk-logo-large.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: auto;
+    height: 400px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 400px;
+}
+
+.login_prompt a {
+    color: #1059CE
+}
+
+
+.tz-gallery .thumbnail {
+    /* min-height: 457.93px; */
+    padding: auto 0;
+}

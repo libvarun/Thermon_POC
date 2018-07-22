@@ -1,0 +1,28 @@
+{
+  "name": "Thermon_POC",
+  "version": "1.0.0",
+  "description": "Thermon_POC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "bootstrap": "3.3.7",
+    "clipboard": "^1.7.1",
+    "cookie-parser": "1.4.3",
+    "express": "4.15.3",
+    "express-session": "1.15.3",
+    "forge-apis": "0.4.1",
+    "jquery": "3.2.1",
+    "moment": "2.18.1",
+    "nodemon": "^1.18.3",
+    "request": "^2.81.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/libvarun/Thermon_POC"
+  },
+  "scripts": {
+    "start": "nodemon start.js",
+    "nodemon": "nodemon start.js --ignore www/"
+  },
+  "author": "",
+  "license": "MIT"
+}

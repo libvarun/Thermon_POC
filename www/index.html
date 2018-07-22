@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vinci Project</title>
+    <!-- Common packages: JQuery & Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="shortcut icon" href=/img/favicon.ico type=image/x-icon>
+    <link rel="stylesheet" href="/css/main.css" />
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/moment.min.js"></script>
+    <script src="/js/clipboard.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
+    <link rel="stylesheet" href="/css/thumbnail-gallery.css">
+
+    <!-- Notification ballons -->
+    <!-- <script src="js/libraries/notify.min.js"></script> -->
+
+    <!-- Autodesk Forge Viewer files -->
+    <link rel="stylesheet" href="https://developer.api.autodesk.com//modelderivative/v2/viewers/style.min.css?v=v3.3.*" type="text/css" />
+    <script src="https://developer.api.autodesk.com//modelderivative/v2/viewers/three.min.js?v=v3.3.*"></script>
+    <script src="https://developer.api.autodesk.com//modelderivative/v2/viewers/viewer3D.min.js?v=v3.3.*"></script>
+
+
+    <!-- BIM360 packages: login and authentication -->
+    <!-- <script src="/js/oauth.js"></script> -->
+    <script src="/js/ForgeViewer.js"></script>
+    <script src="/js/gallery.js"></script>
+
+</head>
+
+<body class="vsc-initialized">
+    <div class="loader"></div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav left">
+                <li class="logo_header">
+                    <a href="#" target="_blank">
+                        <img alt="Autodesk Forge" src="/img/autodesk-forge.png" height="50" /> Vinci Project
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right pT14">
+                
+                <li>
+                    <a href="#" class="signInButton"><span class="glyphicon glyphicon-user" id="signInProfileImage"></span>
+          <span id="signInButtonText" title="Sign in with your Autodesk Account">Sign in</span></a>
+                </li>
+            </ul>
+
+
+        </div>
+    </nav>
+    <!-- End of navbar -->
+
+    <!-- START Category list -->
+    <div class="container gallery-container">
+        <div class="tz-gallery">
+            <div class="row categories_list">
+            </div>
+        </div>
+    </div>
+    <!-- END Category list -->
+
+    <!-- START Viewer -->
+    <div class="container viewer_container">
+        <div class="models_list"> < Back to Models</div>
+        <div id="forgeViewer">
+        </div>
+        
+    </div>
+    <!-- END Viewer -->
+
+    <!-- Add URN Modal -->
+    <div id="urnModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Add URN</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control urn" placeholder="URN" />
+                <p class="status_msg"></p>
+              <button type="button" class="add_urn btn btn-info ">Add</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+    <!-- End URN Modal -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.tz-gallery');
+    </script>
+
+</body>
+
+</html>
