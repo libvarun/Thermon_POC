@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
 
-    var items = ['dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QUEctUElQSU5HLTAxLmR3Zw']
+    var items = ['dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QUEctUElQSU5HLTAxLmR3Zw','dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6bGVlZnNtcC1mb3JnZS9QbklELm53ZA==']
     appendItems(items);
     
     function appendItems(items) {
