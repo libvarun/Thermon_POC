@@ -35,12 +35,11 @@ function onDocumentLoadSuccess(doc) {
     // We could still make use of Document.getSubItemsWithProperties()
     // However, when using a ViewingApplication, we have access to the **bubble** attribute,
     // which references the root node of a graph that wraps each object from the Manifest JSON.
-    var viewables = viewerApp.bubble.search({ 'type': 'geometry' });
+    var viewables = viewerApp.bubble.search({ 'type': 'geometry', 'role':'3d'  });
     if (viewables.length === 0) {
         console.error('Document contains no viewables.');
         return;
     }
-
     // Choose any of the avialble viewables
     viewerApp.selectItem(viewables[0].data, onItemLoadSuccess, onItemLoadFail);
 }
