@@ -61,9 +61,30 @@
     <!-- END Category list -->
 
     <!-- START Viewer -->
-    <div class="container viewer_container">
+    <div class="viewer_container">
         <div class="models_list"> < Back to Models</div>
-        <div id="forgeViewer">
+        <div class="row">
+            <div class="col-md-9" id="forgeViewer"></div>
+            <div class="col-md-3 side_box">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">New Circuit</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Existing Circuits</a></li>
+                </ul>
+                
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <h3>New Circuit</h3>
+                        <!-- <button class="btn btn-success new_circuit">New Circuit</button><br> -->
+                        <div class="new_circuit_container">
+                            <input type="text" class="circuit_name"/><button class="btn btn-success create_circuit">create</button>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="existing_circuits"></div>
+                    </div>
+                </div>
+                
+            </div>
         </div>
         
     </div>

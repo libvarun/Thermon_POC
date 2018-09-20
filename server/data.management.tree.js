@@ -26,20 +26,20 @@ router.use(bodyParser());
 var fs = require('fs');
 var moment = require('moment');
 
-// var models = require('../models.json');
-console.log('models:');
+var circuits = require('../circuits.json');
+// console.log('circuits:');
 
 var oauth = require('./oauth');
 // forge
 var forgeSDK = require('forge-apis');
 
-router.post('/addurn', function (req, res) {
-  console.log(req.body.urn);
-  models.models.push(req.body.urn)
-  console.log(models.models)
+router.post('/updatecircuit', function (req, res) {
+  var newcircuits = req.body;
+  console.log('newcircuits');
+  console.log(newcircuits)
   var fs = require('fs');
-  var fileName = 'models.json';
-  fs.writeFile (fileName, JSON.stringify(models), function(err) {
+  var fileName = 'circuits.json';
+  fs.writeFile (fileName, JSON.stringify(newcircuits), function(err) {
     if (err) throw err;
     });
   res.contentType('json');
@@ -47,9 +47,9 @@ router.post('/addurn', function (req, res) {
 
 });
 
-router.get('/models', function (req, res) {
+router.get('/circuits', function (req, res) {
   res.contentType('json');
-  res.send(models);
+  res.send(circuits);
 });
 
 router.get('/thumbnails', function (req, res) {

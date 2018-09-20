@@ -36,6 +36,7 @@ $(document).ready(function() {
         $('.categories_list').html(template);
         $('.category').click(viewItem);
         $('.loader').hide();
+        $('.category').click();
     }
 
     function viewItem() {
@@ -48,5 +49,74 @@ $(document).ready(function() {
         $('.gallery-container').show();
         $('.viewer_container').hide();
     });
-    
+
+
+
+    /*
+    START - CIRCUIT
+    */
+    var circuits = [];
+    getCurcuits();
+    function getCurcuits(){
+        $.getJSON("/circuits", function (res) {
+            var data = res;
+            circuits = data.circuits;
+            appendCurcuits(data.circuits);
+        });
+    }
+
+    function appendCurcuits(items) {
+        console.log(items)
+        var template = '';
+        items.forEach(item => {
+            template += '<p>'+item.name+'<p>'; 
+        });
+        $('.existing_circuits').html(template);
+        // $('.category').click(viewItem);
+        $('.loader').hide();
+    }
+
+    $('.create_circuit').click(function(){
+        var CircuitName = $('.circuit_name').val();
+        if(CircuitName === ''){
+            $('.status_msg').text('Please enter Circuit Name');
+        }
+        else{
+            var NewCircuit = {"name":CircuitName,"items":[]}
+            circuits.push(NewCircuit)
+            updateCircuit();
+        }
+    })
+
+    function updateCircuit(){
+        $('.status_msg').text('');
+        $.ajax({
+            type: "POST",
+            url: '/updatecircuit',
+            data: {"circuits":circuits},
+            dataType:'json',
+            success: function(){
+                $('.status_msg').text('Added successfully.');
+                // getItems();
+            }
+
+          });        
+    }
+
+    $(".circuit_name").focus(function() {this.select();});
+
+    $('.new_circuit').click(function(){
+        $(".circuit_name").val('NEW_CIRCUIT').focus(); 
+        $('.new_circuit_container').show();       
+    })
+
+    $('.create_circuit').click(function(){
+        console.log('create_circuit')
+    })
+    /*
+    END - CIRCUIT
+    */
+
+
+
 });

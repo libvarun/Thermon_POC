@@ -48,7 +48,7 @@ body {
 
 #forgeViewer {
     height: 74% !important;
-    width: 76% !important;
+    /* width: 76% !important; */
     /* display: block; */
     position: absolute;
     /* bottom: 0; */
@@ -84,3 +84,10 @@ body {
     /* min-height: 457.93px; */
     padding: auto 0;
 }
+
+.side_box{border: 1px solid black;height: 500px;float: right;}
+
+/* .new_circuit_container{display: none;} */
+
+
+
