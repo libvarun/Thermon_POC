@@ -23,12 +23,12 @@ module.exports = {
   // Autodesk Forge configuration
 
   // this this callback URL when creating your client ID and secret
-  callbackURL: process.env.FORGE_CALLBACK_URL || process.env.FORGE_CALLBACK || 'http://localhost:3000/api/forge/callback/oauth',
+  callbackURL: process.env.FORGE_CALLBACK_URL || process.env.FORGE_CALLBACK || '<<YOUR CALLBACK URL FROM FORGE DEVELOPER PORTAL>>',
 
   // set enviroment variables or hard-code here
   credentials: {
-    client_id: process.env.FORGE_CLIENT_ID || 'RpGTftQhCAyjGR0n4EA9Rxq8e11cdWIn',
-    client_secret: process.env.FORGE_CLIENT_SECRET || 'zGtbtDdzqT5G0VaE',
+    client_id: process.env.FORGE_CLIENT_ID || '<<YOUR CLIENT ID FROM FORGE DEVELOPER PORTAL>>',
+    client_secret: process.env.FORGE_CLIENT_SECRET || '<<YOUR FORGE CLIENT SECRET>>',
   },
 
   // Required scopes for your application on server-side

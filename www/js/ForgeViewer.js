@@ -30,6 +30,23 @@ function launchViewer(urn) {
         viewerApp.loadDocument(documentId, onDocumentLoadSuccess, onDocumentLoadFailure);
     });
 }
+// viewerApp.getCurrentViewer().addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged)
+
+// function onSelectionChanged(event) {
+//     // Let's only control selection in case of
+//     // single user selection
+//     console.log(event.dbIdArray)
+//     if (event.dbIdArray.length === 1) {
+//         oViewer.getProperties(event.dbIdArray[0], function(data) {
+//             console.log(data.name)
+//             // if (data.name.startsWith("Solid")) {
+//             //     var instanceTree = oViewer.model.getData().instanceTree;
+//             //     var parentId = instanceTree.getNodeParentId(event.dbIdArray[0])
+//             //     oViewer.select([parentId]);
+//             // }
+//         })
+//     }
+// }
 
 function onDocumentLoadSuccess(doc) {
     // We could still make use of Document.getSubItemsWithProperties()

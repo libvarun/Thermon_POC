@@ -69,7 +69,7 @@ $(document).ready(function() {
         console.log(items)
         var template = '';
         items.forEach(item => {
-            template += '<p>'+item.name+'<p>'; 
+            template += '<p class="ckt">'+item.name+'<p>'; 
         });
         $('.existing_circuits').html(template);
         // $('.category').click(viewItem);
@@ -82,9 +82,8 @@ $(document).ready(function() {
             $('.status_msg').text('Please enter Circuit Name');
         }
         else{
-            var NewCircuit = {"name":CircuitName,"items":[]}
-            circuits.push(NewCircuit)
-            updateCircuit();
+            $('.ckt_cnf,.add_objects').show();
+            
         }
     })
 
@@ -98,6 +97,7 @@ $(document).ready(function() {
             success: function(){
                 $('.status_msg').text('Added successfully.');
                 // getItems();
+                $('.ckt_cnf,.add_objects').show();
             }
 
           });        
@@ -105,14 +105,41 @@ $(document).ready(function() {
 
     $(".circuit_name").focus(function() {this.select();});
 
+    $('.add_objects').click(function(){
+        var dbids = NOP_VIEWER.getSelection();
+        var CircuitName = $('.circuit_name').val();
+        var NewCircuit = {"name":CircuitName,"items":dbids}
+        circuits.push(NewCircuit)
+        updateCircuit();     
+    })
+
+    $('.existing_circuits').delegate('.ckt','click',function(){
+        var cktname = $(this).text();
+        console.log(cktname)    
+        var dbids = getdbids(cktname)
+        console.log(dbids)   
+        var parseddbids = parsedbidArray(dbids)
+        NOP_VIEWER.select(parseddbids);
+    })
+    function parsedbidArray(dbids){
+        var newarr = []
+        for (let i = 0; i < dbids.length; i++) {
+            newarr[i] = parseInt(dbids[i])            
+        }
+        return newarr;
+    }
+    function getdbids(cktname){
+        for(var i=0;i<circuits.length;i++){
+            if(cktname === circuits[i].name){
+                return circuits[i].items;
+            }
+        }
+    }
     $('.new_circuit').click(function(){
         $(".circuit_name").val('NEW_CIRCUIT').focus(); 
         $('.new_circuit_container').show();       
     })
 
-    $('.create_circuit').click(function(){
-        console.log('create_circuit')
-    })
     /*
     END - CIRCUIT
     */

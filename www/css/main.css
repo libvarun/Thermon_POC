@@ -86,7 +86,8 @@ body {
 }
 
 .side_box{border: 1px solid black;height: 500px;float: right;}
-
+.ckt_cnf,.add_objects{display: none}
+.ckt{cursor: pointer;}
 /* .new_circuit_container{display: none;} */
 
 
