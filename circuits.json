@@ -1,1 +1,1 @@
-{"circuits":[{"name":"ckt1","items":["3889","4651"]}]}
+{"circuits":[{"name":"circuit 2","items":[{"name":"ACPPPIPE [10127BE]","dbid":"6189"},{"name":"ACPPPIPE [10127D0]","dbid":"6201"},{"name":"ACPPPIPE [10127FF]","dbid":"6248"}]},{"name":"circuit 3","items":[{"name":"Solid [C814]","dbid":"4651"},{"name":"ACPPEQUIPMENT [10122EF]","dbid":"5061"}]}]}

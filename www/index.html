@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.css">
     <link rel="stylesheet" href="/css/thumbnail-gallery.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <!-- Notification ballons -->
     <!-- <script src="js/libraries/notify.min.js"></script> -->
 
@@ -24,7 +24,7 @@
     <script src="https://developer.api.autodesk.com//modelderivative/v2/viewers/three.min.js?v=v3.3.*"></script>
     <script src="https://developer.api.autodesk.com//modelderivative/v2/viewers/viewer3D.min.js?v=v3.3.*"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
     <!-- BIM360 packages: login and authentication -->
     <!-- <script src="/js/oauth.js"></script> -->
     <script src="/js/ForgeViewer.js"></script>
@@ -68,7 +68,7 @@
             <div class="col-md-3 side_box">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home">New Circuit</a></li>
-                    <li><a data-toggle="tab" href="#menu1">Existing Circuits</a></li>
+                    <li class="circuits_tab"><a data-toggle="tab" href="#menu1">Existing Circuits</a></li>
                 </ul>
                 
                 <div class="tab-content">
@@ -82,7 +82,12 @@
                         </div>
                     </div>
                     <div id="menu1" class="tab-pane fade">
-                        <h1>Click on the circuit to view</h1>
+                        <h3>Click on the circuit to view</h3>
+                        <div class="edit_buttons">
+                            <button class="btn btn-info expand_ckt">Expand</button>
+                            <button class="btn btn-primary add_ckt">Add</button>
+                            <button class="btn btn-danger delete_ckt">Delete</button>
+                        </div>
                         <div class="existing_circuits"></div>
                     </div>
                 </div>
