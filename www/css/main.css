@@ -98,17 +98,17 @@ body {
 
 .side_box{border: 1px solid black;height: 500px;float: right;}
 .ckt_cnf,.add_objects{display: none}
-.ckt{height: 25px;border-radius: 15%;padding: 5px;
+.ckt{height: 25px;border-radius: 10px;padding: 5px;
     width: 250px;cursor: pointer;}
 .selected {
     background-color:rgba(108, 229, 245, 0.836);
 }
-.ckt_item{height: 25px;border-radius: 15%;padding: 5px;
+.ckt_item{height: 25px;border-radius: 10px;padding: 5px;
     width: 250px;cursor: pointer;}
 .selected_item {
     background-color:rgba(108, 229, 245, 0.836);
 }
-.edit_buttons{visibility: hidden;margin-bottom: 15px;}
+.edit_buttons,.add_objs{visibility: hidden;margin-bottom: 15px;}
 /* .new_circuit_container{display: none;} */
 
 

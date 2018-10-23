@@ -175,11 +175,73 @@ function onItemLoadSuccess(viewer, item) {
     })
 
     $('.delete_ckt').click(function(){
+        if ($('.existing_circuits').find('.selected').length === 1) {
+            $('.loader').show();
+            var ckt_name = $('.existing_circuits').find('.selected').text();
+            for (let i = 0; i < circuits.length; i++) {
+                if(ckt_name === circuits[i].name){
+                    circuits.splice(i, 1);
+                    $.ajax({
+                        type: "POST",
+                        url: '/updatecircuit',
+                        data: {"circuits":circuits},
+                        dataType:'json',
+                        success: function(){
+                            appendCurcuits(circuits);
+                            $('.loader').hide();
+                        }
+            
+                    });
+                    console.log('delete')
+                }
+                
+            }            
+        } else if ($('.existing_circuits').find('.selected_item').length === 1){
+            var circuit_name = $('.existing_circuits').find('.selected_item').parent().prev('.ckt').text();
+            var obj_name = $('.existing_circuits').find('.selected_item').text()
+            for (let i = 0; i < circuits.length; i++) {
+                if(circuit_name === circuits[i].name){
+                    var objs = circuits[i].items;
+                    for (let j = 0; j < objs.length; j++) {
+                        if (obj_name === objs[j].name) {
+                            circuits[i].items.splice(j, 1);
+                            $.ajax({
+                                type: "POST",
+                                url: '/updatecircuit',
+                                data: {"circuits":circuits},
+                                dataType:'json',
+                                success: function(){
+                                    appendCurcuits(circuits);
+                                    $('.loader').hide();
+                                    viewer.clearSelection();
+                                }
+                    
+                            });
+                        }
+                    }
+                }
+                
+            }
+        }
+    })
+
+    $('.add_ckt').click(function(){
+        $('.add_objs').css('visibility','visible');
+        viewer.clearSelection();
+    })
+
+    $('.eadd_objects').click(function(){
         $('.loader').show();
         var ckt_name = $('.existing_circuits').find('.selected').text();
-        for (let i = 0; i < circuits.length; i++) {
-            if(ckt_name === circuits[i].name){
-                circuits.splice(i, 1);
+        console.log(ckt_name)
+        var dbids = viewer.getSelection();        
+        for (let j = 0; j < circuits.length; j++) {
+            if (ckt_name === circuits[j].name) {
+                for (let i = 0; i < dbids.length; i++) {
+                    var name = InstanceTree.getNodeName(dbids[i]);
+                    console.log(name);
+                    circuits[j].items.push({'name':name,'dbid':dbids[i]})
+                 }
                 $.ajax({
                     type: "POST",
                     url: '/updatecircuit',
@@ -188,15 +250,15 @@ function onItemLoadSuccess(viewer, item) {
                     success: function(){
                         appendCurcuits(circuits);
                         $('.loader').hide();
+                        viewer.clearSelection();
                     }
-         
-                  });
-                console.log('delete')
+        
+                });
+                break;
             }
             
         }
     })
-
 
    function parsedbidArray(dbids){
        var newarr = []
