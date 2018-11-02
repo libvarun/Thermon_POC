@@ -18,17 +18,20 @@
 
 $(document).ready(function() {
 
-    var items = ['dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QUEctUElQSU5HLTAxLmR3Zw']
+    var items = [{'name':'PPG-PIPING-01.dwg','urn':'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QUEctUElQSU5HLTAxLmR3Zw',
+'jsonname':'PPG-PIPING-01'},
+    {'name':'PnID.nwd','urn':'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QbklELm53ZA',
+'jsonname':'PnID'}]
     appendItems(items);
     
     function appendItems(items) {
         var template = '';
         for (var i = 0; i < items.length; i++) {
-            var params = encodeURIComponent(items[i]);
+            var params = encodeURIComponent(items[i].urn);
             template += '<div data-index="' + i + '" class="col-sm-6 col-md-4 category">' +
                 '<div class="thumbnail">' +
                 '<img src="' + location.protocol + '//' + location.host + location.pathname + 'thumbnails/?id=' + params + '" >' +
-                '<div class="caption">' +
+                '<div class="caption">' +items[i].name+
                 '</div>' +
                 '</div>' +
                 '</div>';
@@ -36,13 +39,13 @@ $(document).ready(function() {
         $('.categories_list').html(template);
         $('.category').click(viewItem);
         $('.loader').hide();
-        $('.category').click();
+        // $('.category').click();
     }
 
     function viewItem() {
         var index = parseInt($(this).attr('data-index'));
         $('.loader').show();
-        launchViewer(items[index])
+        launchViewer(items[index].urn,items[index].jsonname)
         $('.gallery-container').hide();
         $('.viewer_container').show();
     }

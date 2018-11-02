@@ -17,8 +17,9 @@
 /////////////////////////////////////////////////////////////////////
 
 var viewerApp;
-
-function launchViewer(urn) {
+var jsonName;
+function launchViewer(urn,name) {
+    jsonName = name;
     var options = {
         env: 'AutodeskProduction',
         getAccessToken: getForgeToken
@@ -70,19 +71,22 @@ function onItemLoadSuccess(viewer, item) {
  /*
     START - CIRCUIT
     */
+   console.log('item:')
+   console.log(item)
    $('.loader').hide();
    var InstanceTree;
    setTimeout(() => {       
        InstanceTree = viewer.model.getData().instanceTree;
        console.log('InstanceTree:')
        console.log(InstanceTree)
-    }, 2000);
+    }, 4000);
    var circuits = [];
    $('.circuits_tab').click(function(){
     getCurcuits();
    })
    function getCurcuits(){
-       $.getJSON("/circuits", function (res) {
+       var url = '/circuits/?name=' + jsonName ;
+       $.getJSON(url, function (res) {
            var data = res;
            circuits = data.circuits;
            appendCurcuits(data.circuits);
@@ -115,7 +119,7 @@ function onItemLoadSuccess(viewer, item) {
        $('.status_msg').text('');
        $.ajax({
            type: "POST",
-           url: '/updatecircuit',
+           url: '/updatecircuit/?name='+jsonName,
            data: {"circuits":circuits},
            dataType:'json',
            success: function(){
@@ -183,7 +187,7 @@ function onItemLoadSuccess(viewer, item) {
                     circuits.splice(i, 1);
                     $.ajax({
                         type: "POST",
-                        url: '/updatecircuit',
+                        url: '/updatecircuit/?name='+jsonName,
                         data: {"circuits":circuits},
                         dataType:'json',
                         success: function(){
@@ -207,7 +211,7 @@ function onItemLoadSuccess(viewer, item) {
                             circuits[i].items.splice(j, 1);
                             $.ajax({
                                 type: "POST",
-                                url: '/updatecircuit',
+                                url: '/updatecircuit/?name='+jsonName,
                                 data: {"circuits":circuits},
                                 dataType:'json',
                                 success: function(){
@@ -244,7 +248,7 @@ function onItemLoadSuccess(viewer, item) {
                  }
                 $.ajax({
                     type: "POST",
-                    url: '/updatecircuit',
+                    url: '/updatecircuit/?name='+jsonName,
                     data: {"circuits":circuits},
                     dataType:'json',
                     success: function(){

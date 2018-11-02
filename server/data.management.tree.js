@@ -26,7 +26,7 @@ router.use(bodyParser());
 var fs = require('fs');
 var moment = require('moment');
 
-var circuits = require('../circuits.json');
+// var circuits = require('../circuits.json');
 // console.log('circuits:');
 
 var oauth = require('./oauth');
@@ -38,7 +38,7 @@ router.post('/updatecircuit', function (req, res) {
   console.log('newcircuits');
   console.log(newcircuits)
   var fs = require('fs');
-  var fileName = 'circuits.json';
+  var fileName = decodeURIComponent(req.query.name)+'.json';
   fs.writeFile (fileName, JSON.stringify(newcircuits), function(err) {
     if (err) throw err;
     });
@@ -48,6 +48,8 @@ router.post('/updatecircuit', function (req, res) {
 });
 
 router.get('/circuits', function (req, res) {
+  var filename = decodeURIComponent(req.query.name);
+  var circuits = require('../'+filename+'.json');
   res.contentType('json');
   res.send(circuits);
 });
