@@ -158,8 +158,18 @@ function onItemLoadSuccess(viewer, item) {
        console.log(selected_dbids)   
        var parseddbids = parsedbidArray(selected_dbids)
        viewer.select(parseddbids);
+       setTotalLength(parseddbids)
     })
-
+    function setTotalLength(dbIds){
+        viewer.model.getBulkProperties(dbIds, ['Length'],
+        function(elements){
+          var totalLength = 0;
+          for(var i=0; i<elements.length; i++){
+            totalLength += parseFloat(elements[i].properties[0].displayValue);
+          }
+          $('.circuit_length').text(totalLength + ' ft');
+        })
+     }
    $('.existing_circuits').delegate('.ckt_item','click',function(){
        $('.ckt').removeClass('selected');
        $('.ckt_item').removeClass('selected_item');
