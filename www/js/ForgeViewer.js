@@ -71,12 +71,48 @@ function onItemLoadSuccess(viewer, item) {
  /*
     START - CIRCUIT
     */
-   console.log('item:')
-   console.log(item)
+function getLineNumberTag(properties){
+    for (let i = 0; i < properties.length; i++) {
+        const element = properties[i];
+        if(properties[i].attributeName === 'LineNumberTag'){
+            return properties[i].displayValue;
+        }
+    }
+}
+$('.auto_track').on('change',function(){
+    if(this.checked) {
+        viewer.addEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged)
+    }else{
+        viewer.removeEventListener(Autodesk.Viewing.SELECTION_CHANGED_EVENT, onSelectionChanged)
+     }
+})
+   function onSelectionChanged(dbids){
+       console.log(dbids.dbIdArray)
+       viewer.getProperties(dbids.dbIdArray[0], (result) => {
+        console.log('result:');
+        console.log(result);
+        var properties = result.properties;
+        var LineNumberTag = getLineNumberTag(properties);
+        viewer.model.search(LineNumberTag,searchCallback,errorCallback,['LineNumberTag'])
+      }, (err) => {
+        console.log('err');
+        console.log(err);
+      });
+   }
    $('.loader').hide();
    var InstanceTree;
+   var searchCallback = function(results){
+       console.log('searchCallback');
+       console.log(results);
+       viewer.select(results)
+   } 
+   var errorCallback = function(error){
+       console.log('errorCallback');
+       console.log(error);
+   } 
    setTimeout(() => {       
        InstanceTree = viewer.model.getData().instanceTree;
+    //    viewer.model.search('10001',searchCallback,errorCallback,['LineNumberTag'])
        console.log('InstanceTree:')
        console.log(InstanceTree)
     }, 4000);
@@ -110,8 +146,7 @@ function onItemLoadSuccess(viewer, item) {
            $('.status_msg').text('Please enter Circuit Name');
        }
        else{
-           $('.ckt_cnf,.add_objects').show();
-           
+           $('.ckt_cnf,.add_objects').show();           
        }
    })
 
@@ -160,12 +195,15 @@ function onItemLoadSuccess(viewer, item) {
        viewer.select(parseddbids);
        setTotalLength(parseddbids)
     })
+    var ckt_properties;
     function setTotalLength(dbIds){
-        viewer.model.getBulkProperties(dbIds, ['Length'],
+        viewer.model.getBulkProperties(dbIds, ['Length','NominalDiameter'],
         function(elements){
+            ckt_properties = elements;  
+            console.log(elements)
           var totalLength = 0;
           for(var i=0; i<elements.length; i++){
-            totalLength += parseFloat(elements[i].properties[0].displayValue);
+            totalLength += parseFloat(elements[i].properties[1].displayValue);
           }
           $('.circuit_length').text(totalLength + ' ft');
         })
@@ -182,7 +220,8 @@ function onItemLoadSuccess(viewer, item) {
         var ckt = getCircuitByName(selected_ckt);
         var template = '<ol>';
         for (let i = 0; i < ckt.length; i++) {
-            var element = '<li data-dbid="'+ckt[i].dbid+'" class="ckt_item">' + ckt[i].name +'</li>';
+            var properties = ckt_properties[i].properties;
+            var element = '<li data-dbid="'+ckt[i].dbid+'" class="ckt_item">' + ckt[i].name +', Length: '+properties[1].displayValue+'ft, Diameter: '+properties[0].displayValue+'ft</li>';
             template += element;
         }
         $('.selected').after(template);
