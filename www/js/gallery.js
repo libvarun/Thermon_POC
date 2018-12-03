@@ -21,7 +21,9 @@ $(document).ready(function() {
     var items = [{'name':'PPG-PIPING-01.dwg','urn':'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QUEctUElQSU5HLTAxLmR3Zw',
 'jsonname':'PPG-PIPING-01'},
     {'name':'PnID.nwd','urn':'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9QbklELm53ZA',
-'jsonname':'PnID'}]
+'jsonname':'PnID'},
+    {'name':'R1_Mech.dgn.i.dgn','urn':'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9SMV9NZWNoLmRnbi5pLmRnbg',
+'jsonname':'R1_Mech'}]
     appendItems(items);
     
     function appendItems(items) {

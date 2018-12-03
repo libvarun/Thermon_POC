@@ -16,9 +16,9 @@
 // UNINTERRUPTED OR ERROR FREE.
 /////////////////////////////////////////////////////////////////////
 
-var viewerApp;
-var jsonName;
+var viewerApp, jsonName, URN;
 function launchViewer(urn,name) {
+    URN = urn;
     jsonName = name;
     var options = {
         env: 'AutodeskProduction',
@@ -71,6 +71,7 @@ function onItemLoadSuccess(viewer, item) {
  /*
     START - CIRCUIT
     */
+   
 function getLineNumberTag(properties){
     for (let i = 0; i < properties.length; i++) {
         const element = properties[i];
@@ -112,9 +113,10 @@ $('.auto_track').on('change',function(){
    } 
    setTimeout(() => {       
        InstanceTree = viewer.model.getData().instanceTree;
-    //    viewer.model.search('10001',searchCallback,errorCallback,['LineNumberTag'])
-       console.log('InstanceTree:')
-       console.log(InstanceTree)
+       if(URN === 'dXJuOmFkc2sub2JqZWN0czpvcy5vYmplY3Q6dGhlcm1vbmJ1Y2tldC9SMV9NZWNoLmRnbi5pLmRnbg'){
+            console.log('hide [3, 73, 74, 75, 21547]')
+            viewer.hide([3, 73, 74, 75, 21547]);
+        }
     }, 4000);
    var circuits = [];
    $('.circuits_tab').click(function(){
